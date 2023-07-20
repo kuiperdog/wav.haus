@@ -1,0 +1,158 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  height: 100vh;
+  text-align: center;
+  font-family: "Halvar Breit Rg";
+}
+
+#header {
+  height: 25%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+h1 {
+  font-family: "Halvar Breit Blk";
+  font-size: 48px;
+}
+
+h2 {
+  font-size: 24px;
+}
+
+a, a:active, a:visited {
+  color: inherit;
+}
+
+#content {
+  height: 50%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+input {
+  height: 40px;
+  font-family: inherit;
+}
+
+#content > p {
+  color: #ff0000;
+}
+
+#editLink {
+  color: #000000;
+}
+
+input[type="text"], input[type="password"], label[for="subdomain"] {
+  line-height: 40px;
+  font-size: 24px;
+  text-align: center;
+}
+
+input[type="submit"] {
+  border: none;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 20px;
+  background-color: #301934;
+  color: #ffffff;
+  transition: background-color 0.25s;
+}
+
+input[type="submit"]:hover {
+  cursor: pointer;
+  background-color: #944aa1;
+}
+
+#passwordBox {
+  display: flex;
+  flex-direction: column;
+}
+
+#subdomain {
+  text-transform: lowercase;
+}
+
+#footer {
+  height: 25%;
+  width: 100%;
+  display: grid;
+  color: #ffffff;
+}
+
+#footer > p {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+}
+
+.grid-item {
+  width: 100%;
+  height: 100%;
+  grid-column: 1;
+  grid-row: 1;
+  overflow-x: hidden;
+}
+
+.wave {
+  background: url("/assets/wave.svg") repeat-x;
+  background-size: 50% 100%;
+  width: 200%;
+  height: 100%;
+  opacity: 0.8;
+  animation: wave infinite 5s linear;
+}
+
+.grid-item:nth-of-type(2) > .wave {
+  animation: wave infinite 6s linear;
+}
+
+.grid-item:nth-of-type(3) > .wave {
+  animation: wave infinite 7s linear;
+}
+
+#takenBox, #passwordBox {
+  display: none;
+}
+
+@keyframes wave {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@font-face {
+  font-family: 'Halvar Breit Blk';
+  src: url('/assets/HalvarBreit-Blk.eot');
+  src: local('Halvar Breitschrift Black'), local('HalvarBreit-Blk'),
+      url('/assets/HalvarBreit-Blk.eot?#iefix') format('embedded-opentype'),
+      url('/assets/HalvarBreit-Blk.woff2') format('woff2'),
+      url('/assets/HalvarBreit-Blk.woff') format('woff'),
+      url('/assets/HalvarBreit-Blk.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Halvar Breit Rg';
+  src: url('/assets/HalvarBreit-Rg.eot');
+  src: local('Halvar Breitschrift Regular'), local('HalvarBreit-Rg'),
+      url('/assets/HalvarBreit-Rg.eot?#iefix') format('embedded-opentype'),
+      url('/assets/HalvarBreit-Rg.woff2') format('woff2'),
+      url('/assets/HalvarBreit-Rg.woff') format('woff'),
+      url('/assets/HalvarBreit-Rg.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}

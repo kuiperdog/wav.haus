@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>wav.haus</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="icon" href="/favicon.ico">
+  </head>
+  <body>
+    <div id="header">
+      <h1>wav.haus</h1>
+      <h2>A free domain for fans of <a href="https://triplescosmos.com">tripleS</a></h2>  
+    </div>
+    <div id="content">
+      <div>
+        <input id="subdomain" type="text" placeholder="you" size="10" onkeydown="return /[a-z0-9-]/i.test(event.key)">
+        <label for="subdomain">.wav.haus</label>
+      </div>
+      <div id="passwordBox">
+        <label for="password">Set an account password:</label>
+        <input id="password" type="password" size="12">
+      </div>
+      <p id="takenBox">
+        This subdomain is already taken.
+        <br>
+        <a id="editLink" href=""><i>I own this subdomain.</i></a>
+      </p>
+      <input type="submit" value="Claim" onclick="submit()">
+    </div>
+    <div id="footer">
+      <div class="grid-item">
+        <div class="wave"></div>
+      </div>
+      <div class="grid-item">
+        <div class="wave"></div>
+      </div>
+      <div class="grid-item">
+        <div class="wave"></div>
+      </div>
+      <p>
+        © 2023 wav.haus, No Rights Reserved. <a href="https://twitter.com/kuipertwt">By WAV, for WAV.</a>
+        <br>
+        wav.haus is not endorsed by or affiliated with Modhaus Inc.
+      </p>
+    </div>
+    <script src="index.js"></script>
+  </body>
+</html>
