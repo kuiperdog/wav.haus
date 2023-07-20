@@ -1,0 +1,7 @@
+name = "wavhausrouter"
+main = "worker.js"
+compatibility_date = "2023-07-17"
+
+kv_namespaces = [
+    { binding = "kv", id = "a121497caf5f4efdb35999d33add42ab", preview_id = "d157a58deb5846fb96adadce26e06d2e" }
+]
