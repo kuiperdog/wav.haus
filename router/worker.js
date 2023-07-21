@@ -4,7 +4,7 @@ export default {
 		const config = env.kv.get(url.hostname.split('.').reverse()[2]);
 
 		if (!config || !config.settings)
-			return new Response('https://wav.haus', 302)
+			return Response.redirect('https://wav.haus', 302);
 		
 		switch (config.settings.type) {
 			case "carrd":
@@ -14,7 +14,8 @@ export default {
 				if (config.settings.nofooter)
 					html = html.replace(/<[^>]*id\s*=\s*["']credits["'][^>]*>.*?<\/[^>]*>/g, '');
 				return new Response(html, {headers: content.headers});
-
+			case "redirect":
+				return Response.redirect(config.settings.url, 302);
 		}
 
 		return new Response();
