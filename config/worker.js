@@ -14,15 +14,23 @@ export default {
       if (!entry) {
         const hash = await bcrypt.hash(config.password, 10);
         if (!hash || !config.password)
-          return new Response('error');
+          return new Response('fail');
 
         await env.kv.put(config.name, JSON.stringify({ name: config.name, password: hash, settings: {} }));
         return new Response('success');
       }
       
       if (!await bcrypt.compare(config.password, entry.password))
-        return new Response ('error');
-              
+        return new Response ('fail');
+      
+      var dnserr = false;
+      if (entry.settings && (entry.settings.type == 'ghpages' || entry.settings.type == 'dns'))
+        dnserr = await unsetRecords(config.name, entry);
+      if (config.settings.type == 'ghpages' || config.settings.type == 'dns')
+        dnserr = await setRecords(config.name, config);
+      if (dnserr)
+        return new Response('error');
+
       entry.settings = config.settings;
       await env.kv.put(config.name, JSON.stringify(entry));
       return new Response('success');
@@ -30,3 +38,32 @@ export default {
     return new Response('');
   },
 };
+
+async function setRecords(name, config) {
+  return await fetch('https://api.cloudflare.com/client/v4/zones/' + env.cf_zone + '/dns_records', {
+    method: 'POST',
+    headers: {
+      'Authorzation': 'Bearer ' + env.cf_token,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      type: config.settings.type == 'dns' ? 'NS' : 'CNAME',
+      name: name + '.wav.haus',
+      content: config.settings.url
+    })
+  }).ok;
+}
+
+async function unsetRecords(name, config) {
+  const res = await fetch('https://api.cloudflare.com/client/v4/zones/' + env.cf_zone + '/dns_records?name=' + name,
+    { headers: { 'Authorzation': 'Bearer ' + env.cf_token} });
+  
+  if (!res.ok)
+    return false;
+  
+    const data = await res.json();
+    const record = data.result.find(i => i.type == 'NS' || i.type == 'CNAME');
+
+  return await fetch('https://api.cloudflare.com/client/v4/zones/' + env.cf_zone + '/dns_records/' + record,
+    { method: 'DELETE', headers: { 'Authorzation': 'Bearer ' + env.cf_token} }).ok;
+}
