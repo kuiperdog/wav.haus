@@ -1,3 +1,5 @@
+import embedwrapper from './embed.html';
+
 export default {
 	async fetch(request, env, ctx) {
 		const url = new URL(request.url);
@@ -14,6 +16,9 @@ export default {
 				if (config.settings.nofooter)
 					html = html.replace(/<[^>]*id\s*=\s*["']credits["'][^>]*>.*?<\/[^>]*>/g, '');
 				return new Response(html, {headers: content.headers});
+			case "embed":
+				var html = embedwrapper.replace('%DOMAIN%', url.hostname).replace('%LINK%', config.settings.url);
+				return Response(html, { headers: { 'Content-Type': 'text/html;charset=UTF-8' } });
 			case "redirect":
 				return Response.redirect(config.settings.url, 302);
 		}
