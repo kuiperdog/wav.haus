@@ -43,7 +43,7 @@ export default {
 };
 
 async function setRecords(name, config, env) {
-  return await fetch('https://api.cloudflare.com/client/v4/zones/' + env.cf_zone + '/dns_records', {
+  const res = await fetch('https://api.cloudflare.com/client/v4/zones/' + env.cf_zone + '/dns_records', {
     method: 'POST',
     headers: {
       'Authorization': 'Bearer ' + env.cf_token,
@@ -54,7 +54,9 @@ async function setRecords(name, config, env) {
       name: name + '.wav.haus',
       content: config.settings.url
     })
-  }).ok;
+  });
+  console.log(await res.text());
+  return res.ok;
 }
 
 async function unsetRecords(name, env) {
