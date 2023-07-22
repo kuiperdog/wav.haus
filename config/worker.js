@@ -26,7 +26,7 @@ export default {
       if (!await bcrypt.compare(config.password, entry.password) || !config.settings)
         return new Response ('fail');
       
-      var apisuccess = false;
+      var apisuccess = true;
       if (entry.settings && (entry.settings.type == 'ghpages' || entry.settings.type == 'dns'))
         apisuccess = await unsetRecords(config.name, env);
       if (config.settings.type == 'ghpages' || config.settings.type == 'dns')
