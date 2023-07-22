@@ -1,45 +1,50 @@
 <!DOCTYPE html>
-<html lang="en" style="padding: 0; animation: color 5s ease-in-out infinite; color: #ffffff; text-align: center; font-family: Halvar Breitschrift;">
+<html lang="en">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:title" content="wav.haus">
-    <meta property="og:description" content="Coming soon ❤️">
-    <meta property="og:image" content="https://wav.haus/banner.png">
-    <meta name="twitter:card" content="summary_large_image">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>wav.haus</title>
-    <style>
-      @font-face {
-        font-family: 'Halvar Breitschrift';
-        src: local('Halvar Breitschrift Blk'), local('Halvar-Breitschrift-Blk'),
-            url('HalvarBreit-Blk.woff2') format('woff2'),
-            url('HalvarBreit-Blk.woff') format('woff'),
-            url('HalvarBreit-Blk.ttf') format('truetype');
-        font-weight: normal;
-        font-style: normal;
-      }
-      @keyframes color {
-        0% {
-          background-color: #000000;
-        }
-        50% {
-          background-color: #301934;
-        }
-        100% {
-          background-color: #000000;
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="index.css">
+    <link rel="icon" href="/favicon.ico">
   </head>
-  <body style="height: 100vh; margin: 0; display: flex; justify-content: center; align-items: center; ">
-    <h1 style="font-size: 64px;">
-        By WAV, for WAV
+  <body>
+    <div id="header">
+      <h1>wav.haus</h1>
+      <h2>A free domain for fans of <a href="https://triplescosmos.com">tripleS</a></h2>  
+    </div>
+    <div id="content">
+      <div>
+        <input id="subdomain" type="text" placeholder="you" size="10" onkeydown="return /[a-z0-9-]/i.test(event.key)">
+        <label for="subdomain">.wav.haus</label>
+      </div>
+      <div id="passwordBox">
+        <label for="password">Set an account password:</label>
+        <input id="password" type="password" size="12">
+      </div>
+      <p id="takenBox">
+        This subdomain is already taken.
         <br>
+        <a id="editLink" href=""><i>I own this subdomain.</i></a>
+      </p>
+      <input id="claimBtn" type="submit" value="Claim" onclick="submit()">
+    </div>
+    <div id="footer">
+      <div class="grid-item">
+        <div class="wave"></div>
+      </div>
+      <div class="grid-item">
+        <div class="wave"></div>
+      </div>
+      <div class="grid-item">
+        <div class="wave"></div>
+      </div>
+      <p>
+        © 2023 wav.haus, No Rights Reserved. <a href="https://twitter.com/kuipertwt">By WAV, for WAV.</a>
         <br>
-        Coming soon ❤️
-    </h1>
-    <p style="position: absolute; bottom: 0; font-size: 12px;">
-      © Copyright 2023 wav.haus, No Rights Reserved. wav.haus is not endorsed by or affiliated with Modhaus Inc.
-    </p>
+        wav.haus is not endorsed by or affiliated with Modhaus Inc.
+      </p>
+    </div>
+    <script src="index.js"></script>
   </body>
 </html>
