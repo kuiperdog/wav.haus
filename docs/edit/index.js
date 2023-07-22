@@ -50,11 +50,12 @@ document.querySelector('form').addEventListener('submit', async e => {
   document.querySelector('input[type="submit"]').value = "· · ·";
   document.querySelector('input[type="submit"]').disabled = true;
 
+  var incomplete = false;
+
   switch (type) {
     case "carrd":
       var carrdurl = document.querySelector('[option="carrd"] input[type="text"]').value;
-      if (!carrdurl)
-        return;
+      incomplete = !carrdurl;
       data.settings.url = 'https://' + carrdurl.split('.')[0] + '.carrd.co';
       data.settings.nofooter = document.querySelector('[option="carrd"] input[type="checkbox"]').checked;
       break;
@@ -70,6 +71,12 @@ document.querySelector('form').addEventListener('submit', async e => {
     case "dns":
       data.settings.url = document.querySelector('[option="dns"] input[type="text"]').value;
       break;
+  }
+
+  if (incomplete) {
+    error.innerHTML = 'Required fields have not been filled out.'
+    document.querySelector('input[type="submit"]').value = "Save";
+    document.querySelector('input[type="submit"]').disabled = false;
   }
 
   const res = await fetch('https://wav.haus/worker', {
