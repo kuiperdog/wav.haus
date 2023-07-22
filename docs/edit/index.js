@@ -81,7 +81,7 @@ document.querySelector('form').addEventListener('submit', async e => {
   if (status == 'fail')
     error.innerHTML = 'Incorrect password for ' + name + '.wav.haus';
   if (status == 'success')
-    success.innerHTML = 'Changes saved successfully.'
+    success.innerHTML = 'Changes saved successfully. <br><a href="https://' + name + '.wav.haus">(View your site)</a>'
   
   document.querySelector('input[type="submit"]').value = "Save";
   document.querySelector('input[type="submit"]').disabled = false;
