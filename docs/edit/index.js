@@ -61,11 +61,14 @@ document.querySelector('form').addEventListener('submit', async e => {
       break;
     case "redirect":
       data.settings.url = document.querySelector('[option="redirect"] input[type="text"]').value.trim();
+      incomplete = !data.settings.url;
       if (!data.settings.url.startsWith('https://'))
         data.settings.url = 'https://' + data.settings.url;
       break;
     case "ghpages":
-      data.settings.url = document.querySelector('[option="ghpages"] input[type="text"]').value + '.github.io';
+      var ghusername = document.querySelector('[option="ghpages"] input[type="text"]').value.trim();
+      incomplete = !ghusername;
+      data.settings.url = ghusername + '.github.io';
       break;
     case "embed":
       data.settings.url = document.querySelector('[option="embed"] input[type="text"]').value;
@@ -75,7 +78,7 @@ document.querySelector('form').addEventListener('submit', async e => {
       break;
   }
 
-  if (incomplete) {
+  if (incomplete || !data.settings.url) {
     error.innerHTML = 'Required fields have not been filled out.';
     document.querySelector('input[type="submit"]').value = "Save";
     document.querySelector('input[type="submit"]').disabled = false;
