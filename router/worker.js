@@ -18,7 +18,7 @@ export default {
 				return new Response(html, {headers: content.headers});
 			case "embed":
 				var html = embedwrapper.replace('%DOMAIN%', url.hostname).replace('%LINK%', config.settings.url);
-				return Response(html, { headers: { 'Content-Type': 'text/html;charset=UTF-8' } });
+				return new Response(html, { headers: { 'Content-Type': 'text/html;charset=UTF-8' } });
 			case "redirect":
 				return Response.redirect(config.settings.url, 302);
 		}
