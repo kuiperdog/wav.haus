@@ -67,8 +67,10 @@ async function unsetRecords(name, env) {
     return false;
   
   const data = await res.json();
-  const record = data.result.find(i => i.type == 'NS' || i.type == 'CNAME').id;
+  const record = data.result.find(i => i.type == 'NS' || i.type == 'CNAME');
+  if (!record)
+    return true;
 
-  return await fetch('https://api.cloudflare.com/client/v4/zones/' + env.cf_zone + '/dns_records/' + record,
+  return await fetch('https://api.cloudflare.com/client/v4/zones/' + env.cf_zone + '/dns_records/' + record.id,
     { method: 'DELETE', headers: { 'Authorization': 'Bearer ' + env.cf_token} }).ok;
 }
