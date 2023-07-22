@@ -60,7 +60,9 @@ document.querySelector('form').addEventListener('submit', async e => {
       data.settings.nofooter = document.querySelector('[option="carrd"] input[type="checkbox"]').checked;
       break;
     case "redirect":
-      data.settings.url = document.querySelector('[option="redirect"] input[type="text"]').value;
+      data.settings.url = document.querySelector('[option="redirect"] input[type="text"]').value.trim();
+      if (!data.settings.url.startsWith('https://'))
+        data.settings.url = 'https://' + data.settings.url;
       break;
     case "ghpages":
       data.settings.url = document.querySelector('[option="ghpages"] input[type="text"]').value + '.github.io';
