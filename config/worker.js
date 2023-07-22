@@ -58,7 +58,7 @@ async function setRecords(name, config, env) {
 }
 
 async function unsetRecords(name, env) {
-  const res = await fetch('https://api.cloudflare.com/client/v4/zones/' + env.cf_zone + '/dns_records?name=' + name,
+  const res = await fetch('https://api.cloudflare.com/client/v4/zones/' + env.cf_zone + '/dns_records?name=' + name + '.wav.haus',
     { headers: { 'Authorization': 'Bearer ' + env.cf_token} });
   
   if (!res.ok)
