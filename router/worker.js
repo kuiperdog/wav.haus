@@ -3,7 +3,7 @@ import embedwrapper from './embed.html';
 export default {
 	async fetch(request, env, ctx) {
 		const url = new URL(request.url);
-		const config = await env.kv.get(url.hostname.split('.').reverse()[2]);
+		const config = JSON.parse(await env.kv.get(url.hostname.split('.').reverse()[2]));
 
 		if (!config || !config.settings)
 			return Response.redirect('https://wav.haus', 302);
