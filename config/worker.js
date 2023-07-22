@@ -28,9 +28,9 @@ export default {
       
       var dnserr = false;
       if (entry.settings && (entry.settings.type == 'ghpages' || entry.settings.type == 'dns'))
-        dnserr = await unsetRecords(config.name, entry);
+        dnserr = await unsetRecords(config.name, env);
       if (config.settings.type == 'ghpages' || config.settings.type == 'dns')
-        dnserr = await setRecords(config.name, config);
+        dnserr = await setRecords(config.name, config, env);
       if (dnserr)
         return new Response('error');
 
@@ -42,7 +42,7 @@ export default {
   },
 };
 
-async function setRecords(name, config) {
+async function setRecords(name, config, env) {
   return await fetch('https://api.cloudflare.com/client/v4/zones/' + env.cf_zone + '/dns_records', {
     method: 'POST',
     headers: {
@@ -57,15 +57,15 @@ async function setRecords(name, config) {
   }).ok;
 }
 
-async function unsetRecords(name, config) {
+async function unsetRecords(name, env) {
   const res = await fetch('https://api.cloudflare.com/client/v4/zones/' + env.cf_zone + '/dns_records?name=' + name,
     { headers: { 'Authorzation': 'Bearer ' + env.cf_token} });
   
   if (!res.ok)
     return false;
   
-    const data = await res.json();
-    const record = data.result.find(i => i.type == 'NS' || i.type == 'CNAME');
+  const data = await res.json();
+  const record = data.result.find(i => i.type == 'NS' || i.type == 'CNAME');
 
   return await fetch('https://api.cloudflare.com/client/v4/zones/' + env.cf_zone + '/dns_records/' + record,
     { method: 'DELETE', headers: { 'Authorzation': 'Bearer ' + env.cf_token} }).ok;
