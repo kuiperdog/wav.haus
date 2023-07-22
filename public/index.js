@@ -2,6 +2,9 @@ async function submit() {
     var name = document.getElementById('subdomain').value.toLowerCase()
     if (!name || name == "www" || name.startsWith('-') || name.endsWith('-'))
         return;
+    
+    document.getElementById('claimBtn').value = "· · ·"
+    document.getElementById('claimBtn').disabled = true
 
     const statusReq = await fetch('https://wav.haus/worker?name=' + name)
     const status = await statusReq.text()
@@ -25,4 +28,7 @@ async function submit() {
         document.getElementById('password').value = ""
         document.getElementById('editLink').href = "/edit?name=" + name
     }
+
+    document.getElementById('claimBtn').value = "Claim"
+    document.getElementById('claimBtn').disabled = false
 }
