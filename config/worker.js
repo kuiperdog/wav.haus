@@ -46,7 +46,7 @@ async function setRecords(name, config, env) {
   return await fetch('https://api.cloudflare.com/client/v4/zones/' + env.cf_zone + '/dns_records', {
     method: 'POST',
     headers: {
-      'Authorzation': 'Bearer ' + env.cf_token,
+      'Authorization': 'Bearer ' + env.cf_token,
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
@@ -59,7 +59,7 @@ async function setRecords(name, config, env) {
 
 async function unsetRecords(name, env) {
   const res = await fetch('https://api.cloudflare.com/client/v4/zones/' + env.cf_zone + '/dns_records?name=' + name,
-    { headers: { 'Authorzation': 'Bearer ' + env.cf_token} });
+    { headers: { 'Authorization': 'Bearer ' + env.cf_token} });
   
   if (!res.ok)
     return false;
@@ -68,5 +68,5 @@ async function unsetRecords(name, env) {
   const record = data.result.find(i => i.type == 'NS' || i.type == 'CNAME');
 
   return await fetch('https://api.cloudflare.com/client/v4/zones/' + env.cf_zone + '/dns_records/' + record,
-    { method: 'DELETE', headers: { 'Authorzation': 'Bearer ' + env.cf_token} }).ok;
+    { method: 'DELETE', headers: { 'Authorization': 'Bearer ' + env.cf_token} }).ok;
 }
