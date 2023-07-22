@@ -65,7 +65,7 @@ async function unsetRecords(name, env) {
     return false;
   
   const data = await res.json();
-  const record = data.result.find(i => i.type == 'NS' || i.type == 'CNAME');
+  const record = data.result.find(i => i.name == (name + '.wav.haus')).id;
 
   return await fetch('https://api.cloudflare.com/client/v4/zones/' + env.cf_zone + '/dns_records/' + record,
     { method: 'DELETE', headers: { 'Authorization': 'Bearer ' + env.cf_token} }).ok;
