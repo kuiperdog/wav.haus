@@ -23,7 +23,7 @@ export default {
         return new Response('success');
       }
       
-      if (!await bcrypt.compare(config.password, entry.password))
+      if (!await bcrypt.compare(config.password, entry.password) || !config.settings)
         return new Response ('fail');
       
       var dnserr = false;
