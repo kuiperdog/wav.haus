@@ -88,7 +88,7 @@ input[type="submit"]:hover {
   width: 350px;
 }
 
-#error {
+#success {
   color: #1b7022;
   width: 350px;
 }
