@@ -11,12 +11,13 @@ async function submit() {
         document.getElementById('passwordBox').style.display = "inherit"
 
         if (document.getElementById('password').value) {
-            await fetch('https://wav.haus/worker?name=' + name, {
+            const res = await fetch('https://wav.haus/worker', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: { "name": name, "password": document.getElementById('password').value }
             })
-            location.href = '/edit?name=' + name
+            if (await res.text() == 'success')
+                location.href = '/edit?name=' + name
         }
     } else if (status =='taken') {
         document.getElementById('takenBox').style.display = "initial"
