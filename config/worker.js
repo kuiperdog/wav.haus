@@ -26,12 +26,12 @@ export default {
       if (!await bcrypt.compare(config.password, entry.password) || !config.settings)
         return new Response ('fail');
       
-      var dnserr = false;
+      var apisuccess = false;
       if (entry.settings && (entry.settings.type == 'ghpages' || entry.settings.type == 'dns'))
-        dnserr = await unsetRecords(config.name, env);
+        apisuccess = await unsetRecords(config.name, env);
       if (config.settings.type == 'ghpages' || config.settings.type == 'dns')
-        dnserr = await setRecords(config.name, config, env);
-      if (dnserr)
+        apisuccess = await setRecords(config.name, config, env);
+      if (!apisuccess)
         return new Response('error');
 
       entry.settings = config.settings;
