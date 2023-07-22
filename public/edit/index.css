@@ -1,0 +1,120 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-family: "Halvar Breit Rg";
+  text-align: center;
+}
+
+h1 {
+  font-family: 'Halvar Breit Blk';
+  margin-bottom: 25px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.option {
+  width: 350px;
+  border: 3px solid black;
+  border-radius: 20px;
+  padding: 10px;
+  text-align: initial;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.title {
+  display: flex;
+  gap: 5px;
+  flex: 1;
+}
+
+.title > img {
+  height: 100%;
+}
+
+.title > label {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.content {
+  flex-basis: 100%;
+  display: none;
+}
+
+label {
+  font-size: 20px;
+}
+
+input[type="password"] {
+  margin-top: 25px;
+  font-size: 24px;
+  line-height: 38px;
+  border: 3px solid #301934;
+  border-radius: 20px;
+  text-align: center;
+}
+
+input[type="submit"] {
+  border: none;
+  font-size: 24px;
+  line-height: 38px;
+  border-radius: 20px;
+  background-color: #301934;
+  color: #ffffff;
+  transition: background-color 0.25s;
+}
+
+input[type="submit"]:hover {
+  cursor: pointer;
+  background-color: #944aa1;
+}
+
+#error {
+  color: #FF0000;
+  width: 350px;
+}
+
+#error {
+  color: #1b7022;
+  width: 350px;
+}
+
+@font-face {
+  font-family: 'Halvar Breit Blk';
+  src: url('/assets/HalvarBreit-Blk.eot');
+  src: local('Halvar Breitschrift Black'), local('HalvarBreit-Blk'),
+      url('/assets/HalvarBreit-Blk.eot?#iefix') format('embedded-opentype'),
+      url('/assets/HalvarBreit-Blk.woff2') format('woff2'),
+      url('/assets/HalvarBreit-Blk.woff') format('woff'),
+      url('/assets/HalvarBreit-Blk.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Halvar Breit Rg';
+  src: url('/assets/HalvarBreit-Rg.eot');
+  src: local('Halvar Breitschrift Regular'), local('HalvarBreit-Rg'),
+      url('/assets/HalvarBreit-Rg.eot?#iefix') format('embedded-opentype'),
+      url('/assets/HalvarBreit-Rg.woff2') format('woff2'),
+      url('/assets/HalvarBreit-Rg.woff') format('woff'),
+      url('/assets/HalvarBreit-Rg.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}

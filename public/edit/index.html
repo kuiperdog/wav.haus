@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>wav.haus</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="icon" href="/favicon.ico">
+  </head>
+  <body>
+    <h1 id="header"></h1>
+    <form>
+      <div class="option" option="carrd">
+        <div class="title">
+          <input type="radio" name="option">
+          <img src="/assets/carrd.svg">
+          <label>Carrd</label>
+        </div>
+        <div class="content">
+          <input type="text">
+          <label>.carrd.co</label>
+          <br>
+          <input checked type="checkbox"></input>
+          <label>Hide "Made with Carrd"</label>
+        </div>
+      </div>
+      <div class="option" option="redirect">
+        <div class="title">
+          <input type="radio" name="option">
+          <img src="/assets/redirect.svg">
+          <label>Redirect</label>
+        </div>
+        <div class="content">
+          <label>URL:</label>
+          <input type="text">
+        </div>
+      </div>
+      <div class="option" option="ghpages">
+        <div class="title">
+          <input type="radio" name="option">
+          <img src="/assets/ghpages.svg">
+          <label>GitHub Pages</label>
+        </div>
+        <div class="content">
+          <label>GitHub username:</label>
+          <input type="text">
+          <br>
+          <label style="font-size: 16px;">Note: A CNAME file containing your wav.haus domain must be added to your repo. <a href="https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site">(Learn more)</a></label>
+        </div>
+      </div>
+      <div class="option" option="embed">
+        <div class="title">
+          <input type="radio" name="option">
+          <img src="/assets/embed.svg">
+          <label>Custom Embed</label>
+        </div>
+        <div class="content">
+          <label>URL:</label>
+          <input type="text">
+        </div>
+      </div>
+      <div class="option" option="dns">
+        <div class="title">
+          <input type="radio" name="option">
+          <img src="/assets/dns.svg">
+          <label>Custom DNS</label>
+        </div>
+        <div class="content">
+          <label>Nameserver:</label>
+          <input type="text">
+        </div>
+      </div>
+      <input type="password" size="12" placeholder="Password">
+      <p id="error"></p>
+      <p id="success"></p>
+      <input type="submit" value="Save">
+    </form>
+    <script src="index.js"></script>
+  </body>
+</html>
