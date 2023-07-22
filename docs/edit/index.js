@@ -74,9 +74,10 @@ document.querySelector('form').addEventListener('submit', async e => {
   }
 
   if (incomplete) {
-    error.innerHTML = 'Required fields have not been filled out.'
+    error.innerHTML = 'Required fields have not been filled out.';
     document.querySelector('input[type="submit"]').value = "Save";
     document.querySelector('input[type="submit"]').disabled = false;
+    return;
   }
 
   const res = await fetch('https://wav.haus/worker', {
