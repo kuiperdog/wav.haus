@@ -17,7 +17,7 @@ async function submit() {
             const res = await fetch('https://wav.haus/worker', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: { "name": name, "password": document.getElementById('password').value }
+                body: JSON.stringify({ "name": name, "password": document.getElementById('password').value })
             })
             if (await res.text() == 'success')
                 location.href = '/edit?name=' + name

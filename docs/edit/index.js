@@ -72,7 +72,7 @@ document.querySelector('form').addEventListener('submit', async e => {
   const res = await fetch('https://wav.haus/worker', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: data
+    body: JSON.stringify(data)
   });
   const status = await res.text();
 
