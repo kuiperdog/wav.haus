@@ -85,4 +85,5 @@ document.querySelector('form').addEventListener('submit', async e => {
   
   document.querySelector('input[type="submit"]').value = "Save";
   document.querySelector('input[type="submit"]').disabled = false;
+  document.querySelector('form').reset();
 });
