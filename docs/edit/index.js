@@ -52,7 +52,10 @@ document.querySelector('form').addEventListener('submit', async e => {
 
   switch (type) {
     case "carrd":
-      data.settings.url = 'https://' + document.querySelector('[option="carrd"] input[type="text"]').value + '.carrd.co';
+      var carrdurl = document.querySelector('[option="carrd"] input[type="text"]').value;
+      if (!carrdurl)
+        return;
+      data.settings.url = 'https://' + carrdurl.split('.')[0] + '.carrd.co';
       data.settings.nofooter = document.querySelector('[option="carrd"] input[type="checkbox"]').checked;
       break;
     case "redirect":
