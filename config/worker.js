@@ -11,9 +11,12 @@ export default {
       const config = await request.json();
       var entry = JSON.parse(await env.kv.get(config.name));
 
+      if (!config.password)
+        return new Response('fail');
+
       if (!entry) {
         const hash = await bcrypt.hash(config.password, 10);
-        if (!hash || !config.password)
+        if (!hash)
           return new Response('fail');
 
         await env.kv.put(config.name, JSON.stringify({ name: config.name, password: hash, settings: {} }));
